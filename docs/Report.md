@@ -37,8 +37,8 @@
 | Неуспешных | 12 (86%) |
 | Пропущено | 0 |
 | Время выполнения | 3 мин 41 сек |
-<img width="778" height="584" alt="image" src="https://github.com/user-attachments/assets/142930e8-8d20-4591-a702-3d01d1375d03" />
 
+<img width="778" height="584" alt="image" src="https://github.com/user-attachments/assets/142930e8-8d20-4591-a702-3d01d1375d03" />
 **Отчёт Gradle:** `build/reports/tests/test/index.html`
 
 ## Успешные сценарии
@@ -51,34 +51,40 @@
 Все обнаруженные баги оформлены в Issues репозитория
 [`diplomaaa`](https://github.com/alinasadness-cpu/diplomaaa/issues):
 
-| Issue | Название |
-|-------|----------|
-| [#1](https://github.com/alinasadness-cpu/diplomaaa/issues/1) | DECLINED-карта даёт «Успешно. Операция одобрена банком» |
-| [#2](https://github.com/alinasadness-cpu/diplomaaa/issues/2) | Поле «Владелец» принимает цифры |
-| [#3](https://github.com/alinasadness-cpu/diplomaaa/issues/3) | Поле «Владелец» принимает спецсимволы |
-| [#4](https://github.com/alinasadness-cpu/diplomaaa/issues/4) | Поле «Владелец» принимает кириллицу |
-| [#5](https://github.com/alinasadness-cpu/diplomaaa/issues/5) | Месяц «00» не отклоняется валидацией |
+| Issue | Название | Затронуто тестов |
+|-------|----------|------------------|
+| [#1](https://github.com/alinasadness-cpu/diplomaaa/issues/1) | DECLINED-карта даёт «Успешно. Операция одобрена банком» | 2 |
+| [#2](https://github.com/alinasadness-cpu/diplomaaa/issues/2) | Поле «Владелец» принимает цифры | 1 |
+| [#3](https://github.com/alinasadness-cpu/diplomaaa/issues/3) | Поле «Владелец» принимает спецсимволы | 1 |
+| [#4](https://github.com/alinasadness-cpu/diplomaaa/issues/4) | Поле «Владелец» принимает кириллицу | 1 |
+| [#5](https://github.com/alinasadness-cpu/diplomaaa/issues/5) | Месяц «00» не отклоняется валидацией | 1 |
+
+**Итого:** 6 тестов падают из-за реальных багов SUT.
 
 ## Проблемы автотестов (не баги SUT)
 
-| Тест | Причина падения |
-|------|-----------------|
-| `ValidationTest.shouldShowErrorForMonth13` | Неверный селектор: SUT показывает ошибку под полем `.input__sub`, а тест ищет уведомление `.notification_status_error`. |
-| `ValidationTest.shouldShowErrorForExpiredYear` | То же самое. |
+Ещё 6 тестов падают из-за **неверных селекторов** в тестах, а не из-за багов SUT:
 
-Эти два падения — недоработки самих тестов, требуют правки селектора.
+| Тест | Причина |
+|------|---------|
+| `shouldShowErrorFor15Digits` | SUT показывает ошибку под полем `.input__sub`, а тест ищет уведомление `.notification_status_error`. |
+| `shouldShowErrorForLettersInCard` | Поле вообще не принимает буквы — тест не может ввести данные. |
+| `shouldShowErrorForCvc2Digits` | SUT показывает ошибку под полем, а тест ищет уведомление. |
+| `shouldShowErrorForCvc4Digits` | Поле CVC ограничено 3 цифрами — тест не может ввести 4 цифры. |
+| `shouldShowErrorForExpiredYear` | SUT показывает ошибку под полем, а тест ищет уведомление. |
+| `shouldShowErrorForMonth13` | То же самое. |
+
+Эти 6 тестов требуют доработки: заменить проверку уведомления на проверку ошибки под полем (`.input__sub`) или адаптировать под input-маски.
 
 ## Общие рекомендации
 
-1. **Критично:** исправить обработку DECLINED-карт.
-2. **Критично:** добавить полную валидацию полей формы:
-   - номер карты — ровно 16 цифр, только цифры;
-   - CVC/CVV — ровно 3 цифры;
-   - владелец — только латиница, буквы и пробел;
-   - месяц — от 01 до 12;
-   - год — не меньше текущего.
-3. **Важно:** доработать UI-тесты для проверки ошибок под полями.
-4. **Рекомендуется:** добавить логирование запросов к Gate и записей в БД.
+1. **Критично:** исправить обработку DECLINED-карт — сейчас они дают ложное «Успешно».
+2. **Критично:** добавить валидацию поля «Владелец»:
+   - только латиница, буквы и пробел;
+   - запретить цифры и спецсимволы.
+3. **Критично:** добавить валидацию месяца `00` (сейчас проходит как «Успешно»).
+4. **Важно:** доработать UI-тесты для проверки ошибок под полями.
+5. **Рекомендуется:** добавить логирование запросов к Gate и записей в БД.
 
 ## Артефакты
 
