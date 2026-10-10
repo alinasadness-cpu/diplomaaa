@@ -3,8 +3,6 @@ package ru.netology.page;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
 
-import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -22,7 +20,7 @@ public class CreditPage {
     private final SelenideElement errorNotification = $(".notification_status_error");
 
     public CreditPage() {
-        cardNumberField.shouldBe(visible, Duration.ofSeconds(20));
+        cardNumberField.shouldBe(visible);
     }
 
     public void fillForm(DataHelper.CardInfo cardInfo) {
@@ -35,17 +33,18 @@ public class CreditPage {
     }
 
     public void verifySuccess() {
-        successNotification.shouldBe(visible, Duration.ofSeconds(15))
-                .shouldHave(text("Успешно"));
+        successNotification.shouldBe(visible).shouldHave(text("Успешно"));
     }
 
     public void verifyError() {
-        errorNotification.shouldBe(visible, Duration.ofSeconds(15))
-                .shouldHave(text("Ошибка"));
+        errorNotification.shouldBe(visible).shouldHave(text("Ошибка"));
     }
 
     public void verifyValidationError(String expectedText) {
-        errorNotification.shouldBe(visible, Duration.ofSeconds(15))
-                .shouldHave(text(expectedText));
+        errorNotification.shouldBe(visible).shouldHave(text(expectedText));
+    }
+
+    public void verifyFieldError(String expectedText) {
+        $(".input__sub").shouldBe(visible).shouldHave(text(expectedText));
     }
 }

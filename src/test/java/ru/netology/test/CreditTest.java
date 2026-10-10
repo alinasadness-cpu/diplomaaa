@@ -1,7 +1,5 @@
 package ru.netology.test;
 
-import com.codeborne.selenide.Configuration;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import ru.netology.data.DataHelper;
 import ru.netology.db.DbUtils;
@@ -12,15 +10,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Покупка тура в кредит")
-public class CreditTest {
-
-    @BeforeAll
-    static void setUp() {
-        WebDriverManager.firefoxdriver().setup();
-        Configuration.browser = "firefox";
-        Configuration.baseUrl = "http://localhost:8080";
-        Configuration.headless = false;
-    }
+public class CreditTest extends BaseTest {
 
     @BeforeEach
     void cleanUp() {
