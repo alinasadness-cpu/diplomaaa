@@ -58,8 +58,9 @@
 | [#3](https://github.com/alinasadness-cpu/diplomaaa/issues/3) | Поле «Владелец» принимает спецсимволы | 1 |
 | [#4](https://github.com/alinasadness-cpu/diplomaaa/issues/4) | Поле «Владелец» принимает кириллицу | 1 |
 | [#5](https://github.com/alinasadness-cpu/diplomaaa/issues/5) | Месяц «00» не отклоняется валидацией | 1 |
+| [#6](https://github.com/alinasadness-cpu/diplomaaa/issues/6) | Пустое поле «Владелец» не отклоняется валидацией | 1 |
 
-**Итого:** 6 тестов падают из-за реальных багов SUT.
+**Итого:** 7 тестов падают из-за реальных багов SUT.
 
 ## Проблемы автотестов (не баги SUT)
 
