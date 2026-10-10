@@ -10,7 +10,6 @@ import static com.codeborne.selenide.Selenide.open;
 @DisplayName("Валидация полей формы оплаты")
 public class ValidationTest extends BaseTest {
 
-    // ===== Номер карты =====
 
     @Test
     @DisplayName("Неверный формат номера карты (15 цифр)")
@@ -54,7 +53,6 @@ public class ValidationTest extends BaseTest {
         paymentPage.verifyFieldError("Неверный формат");
     }
 
-    // ===== Месяц =====
 
     @Test
     @DisplayName("Неверный месяц 13")
@@ -98,7 +96,6 @@ public class ValidationTest extends BaseTest {
         paymentPage.verifyFieldError("Неверный формат");
     }
 
-    // ===== Год =====
 
     @Test
     @DisplayName("Истёкший год")
@@ -128,8 +125,6 @@ public class ValidationTest extends BaseTest {
         paymentPage.verifyFieldError("Неверный формат");
     }
 
-    // ===== CVC =====
-
     @Test
     @DisplayName("CVC из 2 цифр")
     void shouldShowErrorForCvc2Digits() {
@@ -158,7 +153,6 @@ public class ValidationTest extends BaseTest {
         paymentPage.verifyFieldError("Поле обязательно для заполнения");
     }
 
-    // ===== Владелец =====
 
     @Test
     @DisplayName("Владелец на кириллице")
