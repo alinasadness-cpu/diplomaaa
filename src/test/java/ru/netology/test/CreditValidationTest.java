@@ -52,7 +52,7 @@ public class CreditValidationTest extends BaseTest {
         creditPage.verifyFieldError("Неверный формат");
     }
 
-    // ===== Месяц =====
+   
 
     @Test
     @DisplayName("Неверный месяц 13")
@@ -96,7 +96,6 @@ public class CreditValidationTest extends BaseTest {
         creditPage.verifyFieldError("Неверный формат");
     }
 
-    // ===== Год =====
 
     @Test
     @DisplayName("Истёкший год")
@@ -126,7 +125,6 @@ public class CreditValidationTest extends BaseTest {
         creditPage.verifyFieldError("Неверный формат");
     }
 
-    // ===== CVC =====
 
     @Test
     @DisplayName("CVC из 2 цифр")
@@ -156,7 +154,6 @@ public class CreditValidationTest extends BaseTest {
         creditPage.verifyFieldError("Поле обязательно для заполнения");
     }
 
-    // ===== Владелец =====
 
     @Test
     @DisplayName("Владелец на кириллице")
