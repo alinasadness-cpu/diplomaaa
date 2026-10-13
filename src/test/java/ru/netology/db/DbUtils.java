@@ -11,7 +11,7 @@ public class DbUtils {
 
     private DbUtils() {}
 
-    private static final String DB_URL = System.getProperty("db.url");
+    private static final String DB_URL = System.getProperty("db.url", "jdbc:mysql://94.228.123.24:3306/app");
     private static final String DB_USER = "app";
     private static final String DB_PASSWORD = System.getProperty("db.password", "App!Secur3#2026");
 

@@ -2,6 +2,7 @@ package ru.netology.page;
 
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
+import static com.codeborne.selenide.Condition.partialText;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -15,7 +16,7 @@ public class PaymentPage {
     private final SelenideElement yearField = $("input[placeholder='22']");
     private final SelenideElement holderField = $$("input.input__control").get(3);
     private final SelenideElement cvcField = $("input[placeholder='999']");
-    private final SelenideElement continueButton = $$("button").findBy(text("Продолжить"));
+    private final SelenideElement continueButton = $$("button").findBy(partialText("Продолжить"));
     private final SelenideElement successNotification = $(".notification_status_ok");
     private final SelenideElement errorNotification = $(".notification_status_error");
 
