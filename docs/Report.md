@@ -33,11 +33,11 @@
 
 | Показатель | Значение |
 |-----------|----------|
-| Всего тест-кейсов | **32** |
-| Успешных | **22 (69%)** |
-| Неуспешных | **10 (31%)** |
+| Всего тест-кейсов | 32 |
+| Успешных | 22 (69%) |
+| Неуспешных | 10 (31%) |
 | Пропущено | 0 |
-| Время выполнения | 3 мин 40 сек |
+| Время выполнения | 3 мин 33 сек |
 
 **Отчёт Gradle:** `build/reports/tests/test/index.html`
 
@@ -45,7 +45,7 @@
 
 | Issue | Название | Затронуто тестов |
 |-------|----------|------------------|
-| [#1](https://github.com/alinasadness-cpu/diplomaaa/issues/1) | DECLINED-карта даёт «Успешно. Операция одобрена банком» | 2 |
+| [#1](https://github.com/alinasadness-cpu/diplomaaa/issues/1) | DECLINED-карта даёт «Успешно» | 2 |
 | [#2](https://github.com/alinasadness-cpu/diplomaaa/issues/2) | Поле «Владелец» не валидируется (цифры, спецсимволы) | 4 |
 | [#4](https://github.com/alinasadness-cpu/diplomaaa/issues/4) | Поле «Владелец» принимает кириллицу | 2 |
 | [#5](https://github.com/alinasadness-cpu/diplomaaa/issues/5) | Месяц «00» не отклоняется валидацией | 2 |
